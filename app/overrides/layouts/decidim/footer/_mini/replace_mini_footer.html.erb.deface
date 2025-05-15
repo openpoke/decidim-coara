@@ -1,0 +1,3 @@
+<!-- replace ".mini-footer__content" -->
+
+<%= render "coara/mini_footer" %>
