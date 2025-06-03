@@ -6,9 +6,6 @@ require "open-uri"
 module OmniAuth
   module Strategies
     class Uoc < OmniAuth::Strategies::OAuth2
-      PROVIDER_NAME = "uoc"
-      AFFILIATIONS = %w(staff faculty).freeze
-
       args [:client_id, :client_secret, :site]
 
       option :name, :uoc
@@ -40,12 +37,15 @@ module OmniAuth
 
       def client
         options.client_options[:site] = options.site
-        options.client_options[:authorize_url] = URI.join(options.site, "/oauth2/auth").to_s
-        options.client_options[:token_url] = URI.join(options.site, "/oauth2/token").to_s
+        options.client_options[:authorize_url] = URI.join(options.site, "protocol/openid-connect/auth").to_s
+        options.client_options[:token_url] = URI.join(options.site, "protocol/openid-connect/token").to_s
         super
       end
 
       def raw_info
+        Rails.logger.info "Fetching raw info from UOC"
+        Rails.logger.info "Access token: #{access_token.inspect}"
+        Rails.logger.info "Access token: #{access_token.get("/userinfo").inspect}"
         @raw_info ||= access_token.get("/userinfo").parsed
       end
 

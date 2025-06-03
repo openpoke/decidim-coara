@@ -7,14 +7,11 @@ if ENV["UOC_CLIENT_ID"].present?
     provider(
       :uoc,
       setup: lambda { |env|
-               request = Rack::Request.new(env)
-               organization = Decidim::Organization.find_by(host: request.host)
-               provider_config = organization.enabled_omniauth_providers[:uoc]
                env["omniauth.strategy"].options[:client_id] = ENV["UOC_CLIENT_ID"]
                env["omniauth.strategy"].options[:client_secret] = ENV.fetch("UOC_CLIENT_SECRET", nil)
                env["omniauth.strategy"].options[:site] = ENV.fetch("UOC_SITE", nil)
              },
-      scope: "decidim.rw"
+      scope: ENV.fetch("UOC_CLIENT_SCOPES", "defaultData_OpenID")
     )
   end
   # Force Decidim to look at this provider if not defined in secrets.yml

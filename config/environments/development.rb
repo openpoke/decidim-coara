@@ -84,4 +84,5 @@ Rails.application.configure do
     # Compress the HTML responses with gzip
     config.middleware.use Rack::Deflater
   end
+  config.hosts << "decidim-coara.techlab.uoc.edu"
 end
