@@ -38,6 +38,7 @@ module OmniAuth
       def client
         options.client_options[:site] = options.site
         options.client_options[:authorize_url] = URI.join(options.site, "protocol/openid-connect/auth").to_s
+        options.client_options[:revoke_url] = URI.join(options.site, "protocol/openid-connect/revoke").to_s
         options.client_options[:token_url] = URI.join(options.site, "protocol/openid-connect/token").to_s
         super
       end
@@ -45,8 +46,8 @@ module OmniAuth
       def raw_info
         Rails.logger.info "Fetching raw info from UOC"
         Rails.logger.info "Access token: #{access_token.inspect}"
-        Rails.logger.info "Access token: #{access_token.get("/userinfo").inspect}"
-        @raw_info ||= access_token.get("/userinfo").parsed
+        Rails.logger.info "User info: #{access_token.get("protocol/openid-connect/userinfo").inspect}"
+        @raw_info ||= access_token.get("protocol/openid-connect/userinfo").parsed
       end
 
       # https://github.com/intridea/omniauth-oauth2/issues/81
