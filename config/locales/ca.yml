@@ -1,0 +1,5 @@
+ca:
+  devise:
+    login:
+      admin_login: Accés administració
+      sign_in_uoc: Accedeix amb la UOC

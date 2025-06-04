@@ -1,0 +1,5 @@
+es:
+  devise:
+    login:
+      admin_login: Acceso administración
+      sign_in_uoc: Accede con la UOC

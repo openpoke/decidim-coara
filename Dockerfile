@@ -18,26 +18,27 @@ RUN bundle config --global frozen 1
 WORKDIR /app
 
 # Copy package dependencies files only to ensure maximum cache hit
-COPY ./package-lock.json /app/package-lock.json
-COPY ./package.json /app/package.json
 COPY ./Gemfile /app/Gemfile
 COPY ./Gemfile.lock /app/Gemfile.lock
 
 RUN gem install bundler:$(grep -A 1 'BUNDLED WITH' Gemfile.lock | tail -n 1 | xargs) && \
-    bundle config --local without 'development test' && \
-    bundle install -j4 --retry 3 && \
-    # Remove unneeded gems
-    bundle clean --force && \
-    # Remove unneeded files from installed gems (cache, *.o, *.c)
-    rm -rf /usr/local/bundle/cache && \
-    find /usr/local/bundle/ -name "*.c" -delete && \
-    find /usr/local/bundle/ -name "*.o" -delete && \
-    find /usr/local/bundle/ -name ".git" -exec rm -rf {} + && \
-    find /usr/local/bundle/ -name ".github" -exec rm -rf {} + && \
-    # Remove additional unneeded decidim files
-    find /usr/local/bundle/ -name "spec" -exec rm -rf {} + && \
-    find /usr/local/bundle/ -wholename "*/decidim-dev/lib/decidim/dev/assets/*" -exec rm -rf {} +
+bundle config --local without 'development test' && \
+bundle install -j4 --retry 3 && \
+# Remove unneeded gems
+bundle clean --force && \
+# Remove unneeded files from installed gems (cache, *.o, *.c)
+rm -rf /usr/local/bundle/cache && \
+find /usr/local/bundle/ -name "*.c" -delete && \
+find /usr/local/bundle/ -name "*.o" -delete && \
+find /usr/local/bundle/ -name ".git" -exec rm -rf {} + && \
+find /usr/local/bundle/ -name ".github" -exec rm -rf {} + && \
+# Remove additional unneeded decidim files
+find /usr/local/bundle/ -name "spec" -exec rm -rf {} + && \
+find /usr/local/bundle/ -wholename "*/decidim-dev/lib/decidim/dev/assets/*" -exec rm -rf {} +
 
+COPY ./package-lock.json /app/package-lock.json
+COPY ./package.json /app/package.json
+COPY ./packages /app/packages
 RUN npm ci
 
 # copy the rest of files
@@ -46,7 +47,6 @@ COPY ./bin /app/bin
 COPY ./config /app/config
 COPY ./db /app/db
 COPY ./lib /app/lib
-COPY ./packages /app/packages
 COPY ./public/*.* /app/public/
 COPY ./config.ru /app/config.ru
 COPY ./Rakefile /app/Rakefile
@@ -72,7 +72,7 @@ RUN RAILS_ENV=production \
 RUN mv config/credentials.yml.enc.bak config/credentials.yml.enc 2>/dev/null || true
 RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 
-RUN rm -rf node_modules tmp/cache vendor/bundle test spec app/packs .git
+RUN rm -rf node_modules packages/*/node_modules tmp/cache vendor/bundle test spec app/packs .git*
 
 # This image is for production env only
 FROM ruby:3.2.8-slim AS final
