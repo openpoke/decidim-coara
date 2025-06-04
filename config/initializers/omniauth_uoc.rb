@@ -27,8 +27,8 @@ if ENV["UOC_CLIENT_ID"].present?
         scheme: "https",
         host: ENV.fetch("UOC_HOST", nil),
         identifier: ENV.fetch("UOC_CLIENT_ID", nil),
-        secret: ENV.fetch("UOC_SECRET_KEY", nil),
-        redirect_uri: "https://decidim-coara.techlab.uoc.edu/users/auth/uoc/callback"
+        secret: ENV.fetch("UOC_CLIENT_SECRET", nil),
+        redirect_uri: ENV.fetch("UOC_CALLBACK", "https://decidim-coara.techlab.uoc.edu/users/auth/uoc/callback")
       }
     }
   end
