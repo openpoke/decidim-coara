@@ -276,7 +276,9 @@ GEM
       activesupport (>= 6.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    aes_key_wrap (1.1.0)
     ast (2.4.3)
+    attr_required (1.0.2)
     base64 (0.3.0)
     batch-loader (1.5.0)
     bcrypt (3.1.20)
@@ -288,6 +290,7 @@ GEM
       parser (>= 2.4)
       smart_properties
     bigdecimal (3.2.1)
+    bindata (2.5.1)
     bindex (0.8.1)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
@@ -368,6 +371,8 @@ GEM
     doorkeeper (5.8.2)
       railties (>= 5)
     doorkeeper-i18n (4.0.1)
+    email_validator (2.2.4)
+      activemodel
     erb_lint (0.4.0)
       activesupport
       better_html (>= 2.0.1)
@@ -396,6 +401,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
+    faraday-follow_redirects (0.3.0)
+      faraday (>= 1, < 3)
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
     ffi (1.17.2)
@@ -470,6 +477,13 @@ GEM
       rails (>= 3.2.0)
     io-console (0.8.0)
     json (2.12.2)
+    json-jwt (1.16.7)
+      activesupport (>= 4.2)
+      aes_key_wrap
+      base64
+      bindata
+      faraday (~> 2.0)
+      faraday-follow_redirects
     jwt (2.10.1)
       base64
     kaminari (1.2.2)
@@ -575,6 +589,22 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
+    omniauth_openid_connect (0.8.0)
+      omniauth (>= 1.9, < 3)
+      openid_connect (~> 2.2)
+    openid_connect (2.3.1)
+      activemodel
+      attr_required (>= 1.0.0)
+      email_validator
+      faraday (~> 2.0)
+      faraday-follow_redirects
+      json-jwt (>= 1.16)
+      mail
+      rack-oauth2 (~> 2.2)
+      swd (~> 2.0)
+      tzinfo
+      validate_url
+      webfinger (~> 2.0)
     openssl (3.3.0)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
@@ -613,6 +643,13 @@ GEM
       rack (>= 1.0, < 4)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
+    rack-oauth2 (2.2.1)
+      activesupport
+      attr_required
+      faraday (~> 2.0)
+      faraday-follow_redirects
+      json-jwt (>= 1.11.0)
+      rack (>= 2.1.0)
     rack-protection (3.2.0)
       base64 (>= 0.1.0)
       rack (~> 2.2, >= 2.2.4)
@@ -807,6 +844,11 @@ GEM
       listen (>= 2.7, < 4.0)
       spring (>= 4)
     stringio (3.1.7)
+    swd (2.0.3)
+      activesupport (>= 3)
+      attr_required (>= 0.0.5)
+      faraday (~> 2.0)
+      faraday-follow_redirects
     temple (0.10.3)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
@@ -824,6 +866,9 @@ GEM
     valid_email2 (4.0.6)
       activemodel (>= 3.2)
       mail (~> 2.5)
+    validate_url (1.0.15)
+      activemodel (>= 3.0.0)
+      public_suffix
     version_gem (1.1.8)
     w3c_rspec_validators (0.3.0)
       rails
@@ -843,6 +888,10 @@ GEM
     web-push (3.0.1)
       jwt (~> 2.0)
       openssl (~> 3.0)
+    webfinger (2.1.3)
+      activesupport
+      faraday (~> 2.0)
+      faraday-follow_redirects
     webmock (3.25.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -877,6 +926,7 @@ DEPENDENCIES
   health_check
   letter_opener_web (~> 2.0)
   listen (~> 3.1)
+  omniauth_openid_connect
   puma (>= 6.3.1)
   rails_semantic_logger
   sentry-rails
