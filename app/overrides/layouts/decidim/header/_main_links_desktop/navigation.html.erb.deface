@@ -1,8 +1,8 @@
 <!-- replace_contents '.main-bar__links-desktop__item-wrapper' -->
 
 <div>
-  <%= link_to decidim_participatory_processes.participatory_processes_path, class: "main-bar__links-desktop__item", "aria-label": t("decidim.menu.processes") do %>
-    <%= icon "treasure-map-line" %><span><%= t("decidim.menu.processes") %></span>
+  <%= link_to decidim_assemblies.assemblies_path, class: "main-bar__links-desktop__item", "aria-label": t("decidim.menu.assemblies") do %>
+    <%= icon "government-line" %><span><%= t("decidim.menu.assemblies") %></span>
   <% end %>
 </div>
   <div>
