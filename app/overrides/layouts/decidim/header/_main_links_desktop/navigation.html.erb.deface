@@ -1,0 +1,12 @@
+<!-- replace_contents '.main-bar__links-desktop__item-wrapper' -->
+
+<div>
+  <%= link_to decidim_assemblies.assemblies_path, class: "main-bar__links-desktop__item", "aria-label": t("decidim.menu.assemblies") do %>
+    <%= icon "government-line" %><span><%= t("decidim.menu.assemblies") %></span>
+  <% end %>
+</div>
+  <div>
+    <%= link_to decidim.last_activities_path, class: "main-bar__links-desktop__item", "aria-label": t("decidim.profiles.show.activity") do %>
+      <%= icon "bubble-chart-line" %><span><%= t("decidim.profiles.show.activity") %></span>
+    <% end %>
+</div>

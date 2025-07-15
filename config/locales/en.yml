@@ -3,3 +3,8 @@ en:
     login:
       admin_login: Admin access
       sign_in_uoc: Sign in with UOC
+  decidim:
+    pages:
+      home:
+        extended:
+          participatory_processes: Processes

@@ -16,6 +16,7 @@ env:
   DATABASE_HOST: localhost
   RUBYOPT: '-W:no-deprecated'
   CHROME_VERSION: 126.0.6478.182
+  DECIDIM_DEFAULT_LOCALE: en
 
 jobs:
   test:
@@ -23,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:14
+        image: postgres:16
         ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
