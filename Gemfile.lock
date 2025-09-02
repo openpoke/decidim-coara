@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/decidim-ice/decidim-module-decidim_awesome.git
-  revision: cde1a2d42433133e0abf747110f950684ab74003
+  revision: abafcc9749239525924713a937fd4cbbb14d0d33
   branch: ettiquette-participatory-texts
   specs:
     decidim-decidim_awesome (0.12.4)
