@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/decidim-ice/decidim-module-decidim_awesome.git
-  revision: abafcc9749239525924713a937fd4cbbb14d0d33
+  revision: 36856f565badff75e03c3bbbe531925966866709
   branch: ettiquette-participatory-texts
   specs:
     decidim-decidim_awesome (0.12.4)
@@ -529,7 +529,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0826)
+    mime-types-data (3.2025.0902)
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
