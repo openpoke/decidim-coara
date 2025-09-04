@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/decidim-ice/decidim-module-decidim_awesome.git
-  revision: d2f17b796ea4fd1422250d9b626e6da1606a0c2d
+  revision: 99eb7abb08a335dc7c16f8dabeab027b01d681c2
   branch: main
   specs:
     decidim-decidim_awesome (0.12.4)
@@ -289,7 +289,7 @@ GEM
       erubi (~> 1.4)
       parser (>= 2.4)
       smart_properties
-    bigdecimal (3.2.2)
+    bigdecimal (3.2.3)
     bindata (2.5.1)
     bindex (0.8.1)
     bootsnap (1.18.6)
